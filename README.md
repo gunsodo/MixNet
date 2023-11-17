@@ -12,5 +12,3 @@ Recent advances in deep learning (DL) have significantly impacted motor imagery 
 All source codes will be uploaded once this paper is accepted.
 ```
 
-### License
-Copyright &copy; 2023-All rights reserved by [INTERFACES (BRAIN lab @ IST, VISTEC, Thailand)](https://www.facebook.com/interfaces.brainvistec).
