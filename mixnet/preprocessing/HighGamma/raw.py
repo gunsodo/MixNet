@@ -9,9 +9,10 @@ trial_len = CONSTANT['trial_len']
 orig_smp_freq = CONSTANT['orig_smp_freq']
 
 def read_raw(PATH, subject, num_class):
-    name_subject = 'S{:02d}'.format(subject)
-    X_tr, y_tr = np.load(PATH+"/X_train_{}.npy".format(name_subject)), __convert_class(np.load(PATH+"/y_train_{}.npy".format(name_subject)))
-    X_te, y_te = np.load(PATH+"/X_test_{}.npy".format(name_subject)), __convert_class(np.load(PATH+"/y_test_{}.npy".format(name_subject)))
+    file_name = PATH+'/S{:02d}.npz'.format(subject)
+    data = np.load(file_name)
+    X_tr, y_tr = data['X_train'], __convert_class(data['y_train'])
+    X_te, y_te = data['X_test'], __convert_class(data['y_test'])
     if num_class == 2:
         tr_id = list(np.where((y_tr == 0) | (y_tr == 1))[0])
         te_id = list(np.where((y_te == 0) | (y_te == 1))[0])
