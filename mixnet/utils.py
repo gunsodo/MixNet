@@ -6,6 +6,8 @@ import sklearn
 import scipy.signal
 import argparse
 import mne
+import moabb
+from moabb.paradigms import MotorImagery
 
 # lib path
 PATH = os.path.dirname(os.path.realpath(__file__))
@@ -44,7 +46,7 @@ def load_raw(dataset):
                     wget.download(url,  save_path+file_name)
             print('\nDone!')
         except:
-            raise Exception('Path Error: file does not exist, please direccly download at http://gigadb.org/dataset/100542')
+            raise Exception('Path Error: file does not exist, please directly download at http://gigadb.org/dataset/100542')
     elif dataset == 'BCIC2a':
         try:
             num_subjects = 9
@@ -65,7 +67,28 @@ def load_raw(dataset):
                     wget.download(url, save_path+file_name)
             print('\nDone!')
         except:
-            raise Exception('Path Error: file does not exist, please direccly download at http://bnci-horizon-2020.eu/database/data-sets')
+            raise Exception('Path Error: file does not exist, please directly download at http://bnci-horizon-2020.eu/database/data-sets')
+    elif dataset == 'BCIC2b':
+        try:
+            num_subjects = 9
+            sessions = ['T', 'E']
+            save_path = folder_name + '/' + dataset + '/raw'
+            if save_path is not None:
+                if not os.path.exists(save_path):
+                    os.makedirs(save_path)
+
+            for session in sessions:
+                for person in range(1, num_subjects+1):
+                    file_name = '/B{:02d}{}.mat'.format(person, session)
+                    if os.path.exists(save_path+file_name):
+                        os.remove(save_path+file_name) # if exist, remove file
+                    print('\n===Download is being processed on session: {} subject: {}==='.format(session, person))
+                    url = 'https://lampx.tugraz.at/~bci/database/004-2014'+file_name
+                    print('save to: '+save_path+file_name)
+                    wget.download(url, save_path+file_name)
+            print('\nDone!')
+        except:
+            raise Exception('Path Error: file does not exist, please directly download at http://bnci-horizon-2020.eu/database/data-sets')
     elif dataset == 'SMR_BCI':
         try:
             num_subjects = 14
@@ -85,8 +108,72 @@ def load_raw(dataset):
                     wget.download(url,  save_path+file_name)
             print('\nDone!')
         except:
-            raise Exception('Path Error: file does not exist, please direccly download at http://bnci-horizon-2020.eu/database/data-sets')
-
+            raise Exception('Path Error: file does not exist, please directly download at http://bnci-horizon-2020.eu/database/data-sets')
+    elif dataset == 'BNCI2015_001': 
+        try:
+            save_path = folder_name + '/' + dataset + '/raw'
+            if save_path is not None:
+                if not os.path.exists(save_path):
+                    os.makedirs(save_path)
+            
+            # There are MI-EEG signals from 12 subjects
+            # num_subjects = 12
+            num_subjects = 3
+            # Execute loops to download the MI-EEG dataset through the moabb library
+            for person in range(1, num_subjects+1):
+                print('\n===Download is being processed on subject: {} ==='.format(person))
+                dataset = moabb.datasets.BNCI2015_001()
+                paradigm = MotorImagery(n_classes=2)
+                X, labels, meta = paradigm.get_data(dataset=dataset, subjects=[person])
+                
+                # Define session 0A as a training set and session 0B as an evaluation set 
+                train_idx = np.where(meta['session'].values == '0A')[0]
+                test_idx = np.where(meta['session'].values == '1B')[0]
+                X_train = X[train_idx]
+                y_train = labels[train_idx]
+                X_test = X[test_idx]
+                y_test = labels[test_idx]
+                print("Training data dimension {} and its label {}".format(X_train.shape, y_train.shape))
+                print("Testing data dimension {} and its label {}".format(X_test.shape, y_test.shape))
+                np.savez(save_path+'/S{:02d}.npz'.format(person),
+                        X_train=X_train,
+                        y_train=y_train,
+                        X_test=X_test, 
+                        y_test=y_test)
+            print('\nDone!')
+        except:
+            raise Exception('Path Error: file does not exist, please directly download at https://moabb.neurotechx.com/docs/generated/moabb.datasets.BNCI2015_001.html#moabb.datasets.BNCI2015_001')
+    elif dataset == 'HighGamma': 
+        try:
+            save_path = folder_name + '/' + dataset + '/raw'
+            if save_path is not None:
+                if not os.path.exists(save_path):
+                    os.makedirs(save_path)
+            
+            # There are MI-EEG signals from 12 subjects
+            # num_subjects = 12
+            num_subjects = 2
+            # Execute loops to download the MI-EEG dataset through the MOABB library
+            for person in range(1, num_subjects+1):
+                print('\n===Download is being processed on subject: {} ==='.format(person))
+                dataset = moabb.datasets.Schirrmeister2017()
+                paradigm = MotorImagery(n_classes=4)
+                X, y, meta = paradigm.get_data(dataset=dataset, subjects=[person])
+                tr_id = list(meta[meta['run']=='0train'].index)
+                te_id = list(meta[meta['run']=='1test'].index)
+                X_train, X_test = X[tr_id], X[te_id]
+                y_train, y_test = y[tr_id], y[te_id]
+                print("Training data dimension {} and its label {}".format(X_train.shape, y_train.shape))
+                print("Testing data dimension {} and its label {}".format(X_test.shape, y_test.shape))
+                np.savez(save_path+'/S{:02d}.npz'.format(person),
+                        X_train=X_train,
+                        y_train=y_train,
+                        X_test=X_test, 
+                        y_test=y_test)
+            print('\nDone!')
+        except:
+            raise Exception('Path Error: file does not exist, please directly download at https://moabb.neurotechx.com/docs/generated/moabb.datasets.Schirrmeister2017.html#moabb.datasets.Schirrmeister2017')
+            
 class DataLoader:
     def __init__(self, dataset, train_type=None, data_type=None, num_class=2, subject=None, data_format=None, dataset_path='/datasets', n_component=None, **kwargs):
 
@@ -247,19 +334,6 @@ def resampling(data, sfreq, data_len):
             data_resampled[i,j,:] = scipy.signal.resample(data[i,j,:], new_smp_point)
     return data_resampled
 
-def minmax_scaler(x_train, x_val, x_test, feature_range=(-1, 1)):
-    from sklearn.preprocessing import MinMaxScaler
-    x_train_, x_val_, x_test_ = np.zeros_like(x_train), np.zeros_like(x_val), np.zeros_like(x_test)
-    for i in range(x_train.shape[0]):
-        scaler = MinMaxScaler(feature_range=feature_range)
-        x_train_[i] = scaler.fit_transform(x_train[i])
-    for i in range(x_val.shape[0]):
-        scaler = MinMaxScaler(feature_range=feature_range)
-        x_val_[i] = scaler.fit_transform(x_val[i])
-    for i in range(x_test.shape[0]):
-        scaler = MinMaxScaler(feature_range=feature_range)
-        x_test_[i] = scaler.fit_transform(x_test[i])
-    return x_train, x_val, x_test
 
 def psd_welch(data, smp_freq):
     if len(data.shape) != 3:
@@ -273,59 +347,3 @@ def psd_welch(data, smp_freq):
             # print("the length of---", len(index))
             data_psd[i,j] = power_den[index]
     return data_psd
-
-def generate_pairs(X, y, random_state=42, make_pairs=True, shuffle=True):
-    
-    XS, XT = X
-    yS, yT = y
-    
-    def __generate_data__(X, y, size):
-        test_size = size-len(X)
-        if test_size > len(X):
-            N = size//len(X)
-            X = np.concatenate([X]*N, axis=0)
-            y = np.concatenate([y]*N, axis=0)
-            X, y = __generate_data__(X, y, size)
-        else:
-            _, X_test, _, y_test = sklearn.model_selection.train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
-            X = np.concatenate([X, X_test], axis=0)
-            y = np.concatenate([y, y_test], axis=0)
-        return X, y
-    
-    def __make_pairs__(XS, XT, yS, yT):
-        
-        classes_S, counts_S = np.unique(yS, return_counts=True)
-        digit_indices_S = [np.where(yS == i)[0] for i in range(len(classes_S))]
-        classes_T, counts_T = np.unique(yT, return_counts=True)
-        digit_indices_T = [np.where(yT == i)[0] for i in range(len(classes_T))]
-        
-        for i in range(len(classes_S)):
-            if counts_S[i] > counts_T[i]:
-                digit_indices_S[i] = digit_indices_S[i][:len(digit_indices_T[i])]
-            elif counts_S[i] < counts_T[i]:
-                digit_indices_T[i] = digit_indices_T[i][:len(digit_indices_S[i])]
-            else:
-                pass
-            
-        XS = np.concatenate([XS[digit_indices_S[i]] for i in range(len(digit_indices_S))])
-        XT = np.concatenate([XT[digit_indices_T[i]] for i in range(len(digit_indices_T))])
-        yS = np.concatenate([yS[digit_indices_S[i]] for i in range(len(digit_indices_S))])
-        yT = np.concatenate([yT[digit_indices_T[i]] for i in range(len(digit_indices_T))])   
-                
-        return XS, XT, yS, yT
-    
-    if len(XS) > len(XT):
-        XT, yT = __generate_data__(XT, yT, size=len(XS))
-    elif len(XS) < len(XT):
-        XS, yS = __generate_data__(XS, yS, size=len(XT))
-    else:
-        pass
-    
-    if make_pairs:
-        XS, XT, yS, yT = __make_pairs__(XS, XT, yS, yT)
-    
-    if shuffle:
-        XS, yS = sklearn.utils.shuffle(XS, yS, random_state=random_state)
-        XT, yT = sklearn.utils.shuffle(XT, yT, random_state=random_state)
-    
-    return (XS, XT), (yS, yT)
