@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 import os
-from min2net.preprocessing.FBCSP import FBCSP
-from min2net.preprocessing.OpenBMI import raw
-from min2net.preprocessing.config import CONSTANT
+from mixnet.preprocessing.FBCSP import FBCSP
+from mixnet.preprocessing.OpenBMI import raw
+from mixnet.preprocessing.config import CONSTANT
 # load variable form config file
 CONSTANT = CONSTANT['OpenBMI']
 raw_path = CONSTANT['raw_path']
@@ -22,7 +22,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, bands, n_fea
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    # Carry out subject-dependent setting with k-fold cross validation
+    # Carry out subject-dependent setting with k-fold cross-validation
     for person, (X_tr, y_tr, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         if len(X_tr.shape) != 3:
             raise Exception('Dimension Error, must have 3 dimension')
@@ -56,7 +56,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, bands, n_f
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    # Carry out subject-independent setting with 5-fold cross validation
+    # Carry out subject-independent setting with 5-fold cross-validation
     for person, (X_val, y_val, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         train_subj = [i for i in range(n_subjs)]
         train_subj = np.delete(train_subj, person) # remove test subject

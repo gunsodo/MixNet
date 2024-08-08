@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.io as sio
-from min2net.utils import resampling
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import resampling
+from mixnet.preprocessing.config import CONSTANT
 from sklearn.model_selection import train_test_split
 CONSTANT = CONSTANT['OpenBMI']
 
@@ -169,7 +169,7 @@ def __add_on_resting(X, y, smp_freq):
     X_rest_class1_50per,_ ,_ ,_= train_test_split(X_rest_class1, y_class1, random_state=42, test_size=0.5)
     X_rest_class2_50per,_ ,_ ,_= train_test_split(X_rest_class2, y_class2, random_state=42, test_size=0.5)
     X_rest_all = np.concatenate((X_rest_class1_50per, X_rest_class2_50per), axis=0)
-    # Build class for resting data
+    # Build a class for resting data
     y_rest_all = np.full(X_rest_all.shape[0], 2)
     # Combine all classes again
     X_new_all = np.concatenate((X_mi_class1, X_mi_class2, X_rest_all), axis=0)
@@ -178,7 +178,7 @@ def __add_on_resting(X, y, smp_freq):
 
 def __transitory_mi(X, y, smp_freq, start, stop):
     print("MI Right ang MI Left EEG including transitory period is being processed...")
-    print("This data contains {} time ponts with sampling frequency of {} Hz.".format(X.shape[2], smp_freq))
+    print("This data contains {} time points with sampling frequency of {} Hz.".format(X.shape[2], smp_freq))
     start_pos_mi = int(start*smp_freq)
     stop_pos_mi = int(stop*smp_freq)
     # Segment needed MI period
