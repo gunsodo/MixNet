@@ -1,6 +1,6 @@
 import numpy as np
-from min2net.utils import resampling
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import resampling
+from mixnet.preprocessing.config import CONSTANT
 CONSTANT = CONSTANT['HighGamma']
 # n_chs = CONSTANT['n_chs']
 window_len = CONSTANT['trial_len']*CONSTANT['orig_smp_freq']

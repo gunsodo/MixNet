@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 import os
-from min2net.preprocessing.SpectralSpatialMapping import SpectralSpatialMapping
-from min2net.preprocessing.config import CONSTANT
-from min2net.preprocessing.HighGamma import raw
+from mixnet.preprocessing.SpectralSpatialMapping import SpectralSpatialMapping
+from mixnet.preprocessing.config import CONSTANT
+from mixnet.preprocessing.HighGamma import raw
 CONSTANT = CONSTANT['HighGamma']
 raw_path = CONSTANT['raw_path']
 n_subjs = CONSTANT['n_subjs']
@@ -32,7 +32,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, bands, n_pic
         if not os.path.exists(directory):
             os.makedirs(directory)
             
-    # Carry out subject-dependent setting with 5-fold cross validation        
+    # Carry out subject-dependent setting with 5-fold cross-validation        
     for person, (X_tr, y_tr, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         if len(X_tr.shape) != 3:
             raise Exception('Dimension Error, must have 3 dimension')
@@ -74,7 +74,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, bands, n_p
         if not os.path.exists(directory):
             os.makedirs(directory)
             
-    # Carry out subject-independent setting with 5-fold cross validation        
+    # Carry out subject-independent setting with 5-fold cross-validation        
     for person, (X_val, y_val, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         train_subj = [i for i in range(n_subjs)]
         train_subj = np.delete(train_subj, person) # remove test subject
@@ -99,7 +99,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, bands, n_p
             SS_rep = SpectralSpatialMapping(bands=bands, smp_freq=pick_smp_freq, num_class=num_class, order=order, n_components=n_components, n_pick_bands=n_pick_bands)
             X_train_ss, X_val_ss, X_test_ss = SS_rep.spatial_spectral_with_valset(X_train, y_train, X_val, X_test)     
             print("Check dimension of training data {}, val data {} and testing data {}".format(X_train_ss.shape, X_val_ss.shape, X_test_ss.shape))
-            print('Verify the final dimesion of training label {}, val label {} and testing label {}'.format(y_train.shape, y_val.shape,y_test.shape))
+            print('Verify the final dimension of training label {}, val label {} and testing label {}'.format(y_train.shape, y_val.shape,y_test.shape))
             SAVE_NAME = 'S{:03d}_fold{:03d}'.format(person+1, fold+1)
             __save_data_with_valset(save_path, SAVE_NAME, X_train_ss, y_train, X_val_ss, y_val, X_test_ss, y_test)
             print('The preprocessing of subject {} from fold {} is DONE!!!'.format(person+1, fold+1))
