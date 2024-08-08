@@ -21,7 +21,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, n_features, 
 
     X_train_all, y_train_all = np.zeros((n_subjs, n_trials, n_chs, int(MI_len*pick_smp_freq))), np.zeros((n_subjs, n_trials))
     X_test_all, y_test_all = np.zeros((n_subjs, n_trials, n_chs, int(MI_len*pick_smp_freq))), np.zeros((n_subjs, n_trials))
-    print("The number of CSP component used is: ", n_components, 'with using ',num_class, ' classes data and preparing on dataset: ', 'BCIC2a')
+    print("The number of CSP components used is: ", n_components, 'with using ',num_class, ' classes data and preparing on dataset: ', 'BCIC2a')
     id_chosen_chs = raw.chanel_selection(sel_chs)
     for s in range(n_subjs):
         X_train, y_train, X_test, y_test = __load_BCIC2a(raw_path, s+1, pick_smp_freq, num_class, id_chosen_chs)
@@ -64,7 +64,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, n_features
     X_train_all, y_train_all = np.zeros((n_subjs, n_trials, n_chs, int(MI_len*pick_smp_freq))), np.zeros((n_subjs, n_trials))
     X_test_all, y_test_all = np.zeros((n_subjs, n_trials, n_chs, int(MI_len*pick_smp_freq))), np.zeros((n_subjs, n_trials))
     
-    print("The number of CSP component used is: ", n_components, 'with using ', num_class, ' classes data and preparing on dataset: ', 'BCIC2a')
+    print("The number of CSP components used is: ", n_components, 'with using ', num_class, ' classes data and preparing on dataset: ', 'BCIC2a')
     id_chosen_chs = raw.chanel_selection(sel_chs)
     for s in range(n_subjs):
         X_train, y_train, X_test, y_test = __load_BCIC2a(raw_path, s+1, pick_smp_freq, num_class, id_chosen_chs)

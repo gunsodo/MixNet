@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.io as sio
-from min2net.utils import resampling
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import resampling
+from mixnet.preprocessing.config import CONSTANT
 CONSTANT = CONSTANT['BNCI2015_001']
 # n_chs = CONSTANT['n_chs']
 # n_trials = CONSTANT['n_trials']
