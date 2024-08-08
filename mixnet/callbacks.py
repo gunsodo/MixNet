@@ -1,5 +1,5 @@
 import tensorflow as tf
-import min2net
+import mixnet
 import time
 import numpy as np
 

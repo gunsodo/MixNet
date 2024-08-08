@@ -2,8 +2,8 @@ import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras.constraints import max_norm
 from tensorflow.keras.models import Model
-from min2net import models
-from min2net.loss import *
+from mixnet import models
+from mixnet.loss import *
 
 class MIN2Net_original(models.base.BaseModel):
     

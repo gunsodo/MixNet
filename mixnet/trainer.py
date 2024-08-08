@@ -1,8 +1,8 @@
 import tensorflow as tf
-from min2net import callbacks 
-from min2net.loss import SparseCategoricalCrossentropy
-from min2net.utils import compute_class_weight, dotdict
-from min2net.gradients import GradientBlending
+from mixnet import callbacks 
+from mixnet.loss import SparseCategoricalCrossentropy
+from mixnet.utils import compute_class_weight, dotdict
+from mixnet.gradients import GradientBlending
 import math
 import os
 import copy

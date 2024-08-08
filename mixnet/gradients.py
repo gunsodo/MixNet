@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from min2net.utils import dotdict
+from mixnet.utils import dotdict
 from abc import abstractmethod
 
 """
