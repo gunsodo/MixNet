@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 import os
-from min2net.preprocessing.SpectralSpatialMapping import SpectralSpatialMapping
-from min2net.preprocessing.SMR_BCI import raw
-from min2net.preprocessing.config import CONSTANT
+from mixnet.preprocessing.SpectralSpatialMapping import SpectralSpatialMapping
+from mixnet.preprocessing.SMR_BCI import raw
+from mixnet.preprocessing.config import CONSTANT
 CONSTANT = CONSTANT['SMR_BCI']
 raw_path = CONSTANT['raw_path']
 n_subjs = CONSTANT['n_subjs']
@@ -32,7 +32,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, bands, n_pic
         if not os.path.exists(directory):
             os.makedirs(directory)
             
-    # Carry out subject-dependent setting with 5-fold cross validation        
+    # Carry out subject-dependent setting with 5-fold cross-validation        
     for person, (X_tr, y_tr, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         if len(X_tr.shape) != 3:
             raise Exception('Dimension Error, must have 3 dimension')
@@ -71,12 +71,12 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, bands, n_p
         if not os.path.exists(directory):
             os.makedirs(directory)
             
-    # Carry out subject-independent setting with 5-fold cross validation        
+    # Carry out subject-independent setting with 5-fold cross-validation        
     for person, (X_val, y_val, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         train_subj = [i for i in range(n_subjs)]
         train_subj = np.delete(train_subj, person) # remove test subject
 
-         # Generating fake data to used for k-fold cross-validation only 
+         # Generating fake data to be used for k-fold cross-validation only 
         fake_tr = np.zeros((len(train_subj), 2))
         fake_tr_la = np.zeros((len(train_subj)))
         

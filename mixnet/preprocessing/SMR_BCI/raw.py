@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.io as sio
-from min2net.utils import resampling
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import resampling
+from mixnet.preprocessing.config import CONSTANT
 # load variable form config file
 CONSTANT = CONSTANT['SMR_BCI']
 orig_chs = CONSTANT['orig_chs']

@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold, train_test_split 
 import os
-from min2net.utils import butter_bandpass_filter
-from min2net.preprocessing.SMR_BCI import raw
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import butter_bandpass_filter
+from mixnet.preprocessing.SMR_BCI import raw
+from mixnet.preprocessing.config import CONSTANT
 CONSTANT = CONSTANT['SMR_BCI']
 raw_path = CONSTANT['raw_path']
 n_subjs = CONSTANT['n_subjs']
@@ -32,7 +32,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, bands, order, save_path, n
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    # Carry out subject-dependent setting with 5-fold cross validation
+    # Carry out subject-dependent setting with 5-fold cross-validation
     for person, (X_tr, y_tr, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         if len(X_tr.shape) != 3:
             raise Exception('Dimension Error, must have 3 dimension')
@@ -71,12 +71,12 @@ def subject_independent_setting(k_folds, pick_smp_freq, bands, order, save_path,
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    # Carry out subject-independent setting with 5-fold cross validation
+    # Carry out subject-independent setting with 5-fold cross-validation
     for person, (X_val, y_val, X_te, y_te) in enumerate(zip(X_train_all, y_train_all, X_test_all, y_test_all)):
         train_subj = [i for i in range(n_subjs)]
         train_subj = np.delete(train_subj, person) # remove test subject
 
-         # Generating fake data to used for k-fold cross-validation only
+         # Generating fake data to be used for k-fold cross-validation only
         fake_tr = np.zeros((len(train_subj), 2))
         fake_tr_la = np.zeros((len(train_subj)))
 
@@ -95,7 +95,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, bands, order, save_path,
             X_val_fil = butter_bandpass_filter(X_val_cat, bands[0],  bands[1], pick_smp_freq, order)
             X_test_fil = butter_bandpass_filter(X_te, bands[0],  bands[1], pick_smp_freq, order)
 
-            print('Verify the final dimesion of training data {}, val data {} and testing data {}'.format(X_train_fil.shape, X_val_fil.shape,X_test_fil.shape))
+            print('Verify the final dimension of training data {}, val data {} and testing data {}'.format(X_train_fil.shape, X_val_fil.shape,X_test_fil.shape))
             SAVE_NAME = 'S{:03d}_fold{:03d}'.format(person+1, fold+1)
             __save_data_with_valset(save_path, SAVE_NAME, X_train_fil, y_train_cat, X_val_fil, y_val_cat, X_test_fil, y_te)
             print('The preprocessing of subject {} from fold {} is DONE!!!'.format(person+1, fold+1))

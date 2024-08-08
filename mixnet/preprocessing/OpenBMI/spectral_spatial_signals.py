@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 import os
-from mixnet.preprocessing.FBCSP_no_selBest import FBCSP
+from mixnet.preprocessing.SpectralSpatialSignalGeneration import SpectralSpatialSignalGeneration
 from mixnet.preprocessing.OpenBMI import raw
 from mixnet.preprocessing.config import CONSTANT
 # load variable form config file
