@@ -1,18 +1,18 @@
 import numpy as np
 from scipy import linalg 
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
-from min2net.utils import butter_bandpass_filter
+from mixnet.utils import butter_bandpass_filter
 # Note that we modify CSP function using MNE-Python package (version 0.20).
 # Reference: 
 # - https://github.com/mne-tools/mne-python
 # - A. Gramfort, M. Luessi, E. Larson, D. Engemann, D. Strohmeier, C. Brodbeck, R. Goj, M. Jas, T. Brooks, L. Parkkonen, and M. Ha ̈ma ̈la ̈inen, “Meg and eeg data analysis with mne-python,” Frontiers in Neuroscience, vol. 7, p. 267, 2013.
 # Sources:
 # - Common Spatial Pattern revisited by Riemannian geometry
-# - Model based generalization analysis of common spatial pattern in brain computer interfaces
+# - Model-based generalization analysis of common spatial patterns in brain-computer interfaces
 
-class FBCSP():
+class SpectralSpatialSignalGeneration():
     '''
-    Two- or multi-class FBCSP
+    Recommend for only two-class EEG classification
     '''
     def __init__(self, 
                 bands, 
@@ -226,12 +226,8 @@ class FBCSP():
         D = np.reshape(A, (n_times, -1, n_times)).transpose(1, 0, 2)
         return V, D
 
-    def __get_log_var_feats(self, spatial_filt, data):
+    def __get_spectral_spatial_signals(self, spatial_filt, data):
         data_dot = np.dot(spatial_filt, data) # spatially filtered signals 
-#         data_var = np.var(data_dot, axis=1)
-        # data_var = (data_dot**2).mean(axis=1)
-        # We use log(var) instead of averaging
-#         data_log = np.log(data_var)
         return data_dot
     
     def fit_transform(self, X, y):  
@@ -240,28 +236,24 @@ class FBCSP():
                   
         n_samples = X.shape[0]
         n_timepoints = X.shape[2]
-        X_transformed_var = np.zeros((n_samples, len(self.bands), self.n_components, n_timepoints))
+        X_spatially_filltered = np.zeros((n_samples, len(self.bands), self.n_components, n_timepoints))
 
         for id_band, freq_band in enumerate(self.bands):
             # Compute band-pass filter of EEG signals
             X_filtered = butter_bandpass_filter(X, freq_band[0], freq_band[1], self.smp_freq, self.order)
             
-            # Calculating covariance only on training set
+            # Calculating covariance and spatial filter on the training set only 
             covs, sample_weights =  self.__calculate_covariance_matrices(X_filtered, y)
             spf_sel, spf_org = self.__get_spatial_filter(covs, sample_weights)
             self.spatial_transform[id_band] = spf_sel
                   
-            # Calculate the variance of spatially filtered signals and then compute the logarithm 
+            # Transform filtered EEG signals to spatially filtered signals in each frequency band
             for sample in range(X_filtered.shape[0]):
-                X_transformed_var[sample, id_band] = self.__get_log_var_feats(self.spatial_transform[id_band], X_filtered[sample,:,:])
+                X_spatially_filltered[sample, id_band] = self.__get_spectral_spatial_signals(self.spatial_transform[id_band], X_filtered[sample,:,:])
         
-#         X_transformed_var = np.swapaxes(X_transformed_var, 0, 1)
-        X_transformed_var = X_transformed_var.reshape(n_samples, int(self.n_components*len(self.bands)), n_timepoints)
+        X_spatially_filltered_signals = X_spatially_filltered.reshape(n_samples, int(self.n_components*len(self.bands)), n_timepoints)
 
-        # select k best
-#         X_fbcsp = self.selector.fit_transform(X_transformed_var, y) 
-#         return X_fbcsp
-        return X_transformed_var
+        return X_spatially_filltered_signals
 
     def transform(self, X):
         if len(X.shape) != 3:
@@ -269,17 +261,15 @@ class FBCSP():
         
         n_samples = X.shape[0]
         n_timepoints = X.shape[2]
-        X_transformed_var = np.zeros((n_samples, len(self.bands), self.n_components, n_timepoints))
+        X_spatially_filltered = np.zeros((n_samples, len(self.bands), self.n_components, n_timepoints))
 
         for id_band, freq_band in enumerate(self.bands):
             X_filtered = butter_bandpass_filter(X, freq_band[0], freq_band[1], self.smp_freq, self.order)
             
-            # Calculate the variance of spatially filtered signals and then compute the logarithm 
+            # Just transform filter EEG signals to spatially filtered signals in each frequency band
             for sample_te in range(X_filtered.shape[0]):
-                X_transformed_var[sample_te, id_band] = self.__get_log_var_feats(self.spatial_transform[id_band], X_filtered[sample_te,:,:]) 
-
-#         X_transformed_var = np.swapaxes(X_transformed_var, 0, 1)
-        X_transformed_var = X_transformed_var.reshape(n_samples, int(self.n_components*len(self.bands)), n_timepoints)
-        # select k best
-#         X_fbcsp = self.selector.transform(X_transformed_var)  
-        return X_transformed_var
+                X_spatially_filltered[sample_te, id_band] = self.__get_spectral_spatial_signals(self.spatial_transform[id_band], X_filtered[sample_te,:,:]) 
+   
+        X_spatially_filltered_signals = X_spatially_filltered.reshape(n_samples, int(self.n_components*len(self.bands)), n_timepoints)
+ 
+        return X_spatially_filltered_signals

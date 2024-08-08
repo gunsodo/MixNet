@@ -1,14 +1,14 @@
 import numpy as np
 from scipy import linalg 
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
-from min2net.utils import butter_bandpass_filter
+from mixnet.utils import butter_bandpass_filter
 # Note that we modify CSP function using MNE-Python package (version 0.20).
 # Reference: 
 # - https://github.com/mne-tools/mne-python
 # - A. Gramfort, M. Luessi, E. Larson, D. Engemann, D. Strohmeier, C. Brodbeck, R. Goj, M. Jas, T. Brooks, L. Parkkonen, and M. Ha ̈ma ̈la ̈inen, “Meg and eeg data analysis with mne-python,” Frontiers in Neuroscience, vol. 7, p. 267, 2013.
 # Sources:
 # - Common Spatial Pattern revisited by Riemannian geometry
-# - Model based generalization analysis of common spatial pattern in brain computer interfaces
+# - Model-based generalization analysis of common spatial patterns in brain-computer interfaces
 
 class FBCSP():
     '''
@@ -245,7 +245,7 @@ class FBCSP():
             # Compute band-pass filter of EEG signals
             X_filtered = butter_bandpass_filter(X, freq_band[0], freq_band[1], self.smp_freq, self.order)
             
-            # Calculating covariance only on training set
+            # Calculating covariance matrices and spatial filter over the training set only
             covs, sample_weights =  self.__calculate_covariance_matrices(X_filtered, y)
             spf_sel, spf_org = self.__get_spatial_filter(covs, sample_weights)
             self.spatial_transform[id_band] = spf_sel

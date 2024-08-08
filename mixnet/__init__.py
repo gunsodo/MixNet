@@ -1,4 +1,4 @@
-from min2net.version import __version__
+from mixnet.version import __version__
 from . import layers
 from . import utils
 from . import datautils

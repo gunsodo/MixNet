@@ -1,14 +1,14 @@
 import numpy as np
 from scipy import linalg 
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
-from min2net.utils import butter_bandpass_filter
+from mixnet.utils import butter_bandpass_filter
 # Note that we modify CSP function using MNE-Python package (version 0.20).
 # Reference: 
 # - https://github.com/mne-tools/mne-python
 # - A. Gramfort, M. Luessi, E. Larson, D. Engemann, D. Strohmeier, C. Brodbeck, R. Goj, M. Jas, T. Brooks, L. Parkkonen, and M. Ha ̈ma ̈la ̈inen, “Meg and eeg data analysis with mne-python,” Frontiers in Neuroscience, vol. 7, p. 267, 2013.
 # Sources:
 # - Common Spatial Pattern revisited by Riemannian geometry
-# - Model based generalization analysis of common spatial pattern in brain computer interfaces
+# - Model based generalization analysis of common spatial patterns in brain-computer interfaces
 
 class SpectralSpatialMapping():
     def __init__(self, 
@@ -266,11 +266,11 @@ class SpectralSpatialMapping():
             for sample_te in range(X_te_filtered.shape[0]):
                 X_te_transformed_cov[id_band, sample_te,:,:] = self.get_transformed_feats(spf_org, X_te_filtered[sample_te,:,:]) 
 
-        # Prepare the most suited form of data for rearanging all frequency bands
+        # Prepare the most suited form of data for rearranging all frequency bands
         X_tr_transformed_var_sw = np.swapaxes(X_tr_transformed_var,0,1) 
 
-        # Rearrange all frequency bands from the largest MI value to smallest MI value and pick k frequency bands by considering the most k largest MI values.
-        # This procedure considered only traning set obtaning the order of k frequnecy bands that provide the largest MI value.
+        # Rearrange all frequency bands from the largest MI value to the smallest MI value and pick k frequency bands by considering the most k largest MI values.
+        # This procedure considered only the training set obtaining the order of k frequency bands that provide the largest MI value.
         selector = SelectKBest(score_func=mutual_info_classif, k=self.n_pick_bands)
         X_tr_picked_band = selector.fit_transform(X_tr_transformed_var_sw, y_tr)
         des_order_list = selector.get_support(indices=True)

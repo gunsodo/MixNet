@@ -1,4 +1,4 @@
-from min2net.utils import PATH
+from mixnet.utils import PATH
 
 CONSTANT = {
     'BCIC2a': {

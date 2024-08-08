@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.io as sio
-from min2net.utils import resampling
-from min2net.preprocessing.config import CONSTANT
+from mixnet.utils import resampling
+from mixnet.preprocessing.config import CONSTANT
 CONSTANT = CONSTANT['BCIC2a']
 # n_chs = CONSTANT['n_chs']
 n_trials = CONSTANT['n_trials']
@@ -33,7 +33,7 @@ def read_raw(PATH, subject, training, num_class, id_chosen_chs):
             # num_class = 2: picked only class 1 (left hand) and class 2 (right hand) for our propose
             if(_y[trial][0] <= num_class): 
                 data.append(np.transpose(_X[int(_trial[trial]):(int(_trial[trial])+window_len), id_chosen_chs])) # selected merely motor cortices region
-                label.append(int(_y[trial]) -1 ) # -1 to adjust the values of class to be in range 0 and 1
+                label.append(int(_y[trial]) -1 ) # -1 to adjust the values of class to be in the range 0 and 1
     data_arr = np.array(data)
     label_arr = np.array(label)
     return data_arr, label_arr
