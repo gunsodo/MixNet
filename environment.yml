@@ -1,0 +1,11 @@
+name: min2net
+channels:
+  - defaults
+dependencies:
+  - python=3.8.13=h12debd9_0
+  - tensorflow-gpu=2.8.2=hb41d75a_0
+  - pip:
+    - scikit-learn>=0.24.2
+    - wget>=3.2
+    - tensorflow-addons==0.14.0
+    - ray>=1.11.0
