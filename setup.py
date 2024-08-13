@@ -7,29 +7,31 @@ here = path.abspath(path.dirname(__file__))
 with open( path.join(here, 'README.md'), 'r', encoding='utf-8') as fh:
     long_description = fh.read()
     
-with open(path.join(here, 'min2net/version.py'), encoding='utf-8') as (
+with open(path.join(here, 'mixnet/version.py'), encoding='utf-8') as (
         version_file):
     exec(version_file.read(), version)
 
 setuptools.setup(
-    name='min2net',
+    name='mixnet',
     version=version['__version__'],
-    author='INTERFACES',
-    author_email='IoBT.VISTEC@gmail.com',
-    description='MIN2Net: End-to-End Multi-Task Learning for Subject-Independent Motor Imagery EEG Classification',
+    author='Phairot Autthasan',
+    author_email='phairot.a_s17@vistec.ac.th',
+    description='MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://MIN2Net.github.io',
-    download_url='https://github.com/IoBT-VISTEC/MIN2Net/releases',
+    url='https://github.com/Max-Phairot-A/MixNet',
+    download_url='https://github.com/Max-Phairot-A/MixNet/releases',
     project_urls={
-        'Bug Tracker': 'https://github.com/IoBT-VISTEC/MIN2Net/issues',
-        'Documentation': 'https://MIN2Net.github.io',
-        'Source Code': 'https://github.com/IoBT-VISTEC/MIN2Net',
+        'Bug Tracker': 'https://github.com/Max-Phairot-A/MixNet/issues',
+        'Documentation': 'https://github.com/Max-Phairot-A/MixNet',
+        'Source Code': 'https://github.com/Max-Phairot-A/MixNet',
     },
     license='Apache Software License',
     keywords=[
-        'Brain-computer Interfaces'
-        'BCI', 
+        'Brain-computer Interfaces',
+        'BCI',
+        'Deep learning',
+        'DL'
         'Motor Imagery',
         'MI', 
         'Multi-task Learning',
@@ -37,8 +39,10 @@ setuptools.setup(
         'DML', 
         'Autoencoder',
         'AE',
-        'EEG Classifier'
+        'Adaptive Gradient Blending',
+        'EEG Classifier'        
     ],
+    
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: Apache Software License',

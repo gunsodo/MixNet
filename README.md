@@ -41,7 +41,7 @@ conda activate min2net
 
 ### Citation
 
-To cited [our paper](https://ieeexplore.ieee.org/document/10533256)
+To read & cite [our paper](https://ieeexplore.ieee.org/document/10533256)
 
 P. Autthasan, R. Chaisaen, H. Phan, M. D. Vos and T. Wilaiprasitporn, "MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification," in IEEE Internet of Things Journal, doi: 10.1109/JIOT.2024.3402254.
 
@@ -59,5 +59,5 @@ P. Autthasan, R. Chaisaen, H. Phan, M. D. Vos and T. Wilaiprasitporn, "MixNet: J
 ```
 
 ### License
-Copyright &copy; 2021-All rights reserved by [INTERFACES (BRAIN lab @ IST, VISTEC, Thailand)](https://www.facebook.com/interfaces.brainvistec).
-Distributed by an [Apache License 2.0](https://github.com/IoBT-VISTEC/MIN2Net/blob/main/LICENSE).
+Copyright &copy; 2024-All rights reserved by [INTERFACES (BRAIN lab @ IST, VISTEC, Thailand)](https://www.facebook.com/interfaces.brainvistec).
+Distributed by an [Apache License 2.0](https://github.com/Max-Phairot-A/MixNet/blob/main/LICENSE).
