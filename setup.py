@@ -24,9 +24,9 @@ setuptools.setup(
     project_urls={
         'Bug Tracker': 'https://github.com/Max-Phairot-A/MixNet/issues',
         'Documentation': 'https://github.com/Max-Phairot-A/MixNet',
-        'Source Code': 'https://github.com/Max-Phairot-A/MixNet',
+        'Source Code': 'https://github.com/Max-Phairot-A/MixNet'
     },
-    license='Apache Software License',
+    license="Apache Software License",
     keywords=[
         'Brain-computer Interfaces',
         'BCI',
