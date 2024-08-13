@@ -4,6 +4,6 @@ __pycache__/
 *$py.class
 build/
 dist/
-.DS_Store
 min2net.egg-info/
+.DS_Store
 .pypirc
