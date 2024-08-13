@@ -1,4 +1,6 @@
-[<img src="MixNet_overview_new.jpg" width="30%" height="30%">]
+<p align="center"> 
+<img src="MixNet_overview_new.jpg" width="100%" height="100%">/> 
+</p>
 
 ### MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification
 
