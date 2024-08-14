@@ -1,6 +1,7 @@
-# tensorflow-gpu==2.2.0 # not support tensorflow-gpu via pip
-tensorflow-addons==0.9.1
-scikit-learn>=0.24.1
+# tensorflow-gpu==2.7.0 or 'tensorflow-gpu==2.8.2' # not support tensorflow-gpu via pip
+python==3.8.10
+tensorflow-addons==0.16.1
+scikit-learn>=1.2.2
 wget>=3.2
-h5py==2.10.0
-pandas
+h5py==3.5.0
+pandas>=2.0

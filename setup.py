@@ -49,9 +49,9 @@ setuptools.setup(
         'Operating System :: OS Independent',
     ],
     install_requires = [
-        # 'tensorflow-gpu==2.8.2', not support tensorflow-gpu via pip
-        'tensorflow-addons==0.16.1', #'tensorflow-addons==0.9.1',
-        'scikit-learn>=0.24.1',
+        # 'tensorflow-gpu==2.7.0' or 'tensorflow-gpu==2.8.2', not support tensorflow-gpu via pip
+        'tensorflow-addons==0.16.1', 
+        'scikit-learn>=1.2.2',
         'wget>=3.2',
         'ray>=1.11.0',
         'pandas'
@@ -64,3 +64,6 @@ setuptools.setup(
     python_requires='>=3.7, <=3.10.4',
 
 )
+
+# tensorflow-gpu==2.7.0 # not support tensorflow-gpu via pip
+
