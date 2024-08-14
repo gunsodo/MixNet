@@ -1,7 +1,5 @@
 from mixnet.version import __version__
-from . import layers
 from . import utils
-from . import datautils
 from . import loss
 from . import preprocessing
 from . import models

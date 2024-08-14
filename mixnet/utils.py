@@ -117,8 +117,7 @@ def load_raw(dataset):
                     os.makedirs(save_path)
             
             # There are MI-EEG signals from 12 subjects
-            # num_subjects = 12
-            num_subjects = 3
+            num_subjects = 12
             # Execute loops to download the MI-EEG dataset through the moabb library
             for person in range(1, num_subjects+1):
                 print('\n===Download is being processed on subject: {} ==='.format(person))
@@ -150,9 +149,8 @@ def load_raw(dataset):
                 if not os.path.exists(save_path):
                     os.makedirs(save_path)
             
-            # There are MI-EEG signals from 12 subjects
-            # num_subjects = 12
-            num_subjects = 2
+            # There are MI-EEG signals from 14 subjects
+            num_subjects = 14
             # Execute loops to download the MI-EEG dataset through the MOABB library
             for person in range(1, num_subjects+1):
                 print('\n===Download is being processed on subject: {} ==='.format(person))
