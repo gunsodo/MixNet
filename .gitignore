@@ -4,6 +4,6 @@ __pycache__/
 *$py.class
 build/
 dist/
-mixnet.egg-info/
+mixnet_eeg.egg-info/
 .DS_Store
 .pypirc

@@ -12,7 +12,7 @@ with open(path.join(here, 'mixnet/version.py'), encoding='utf-8') as (
     exec(version_file.read(), version)
 
 setuptools.setup(
-    name='mixnet',
+    name='mixnet-eeg',
     version=version['__version__'],
     author='Phairot Autthasan',
     author_email='phairot.a_s17@vistec.ac.th',
@@ -53,7 +53,7 @@ setuptools.setup(
         'tensorflow-addons==0.16.1', #'tensorflow-addons==0.9.1',
         'scikit-learn>=0.24.1',
         'wget>=3.2',
-        'ray>=1.11.0'
+        'ray>=1.11.0',
         'pandas'
     ],
     package_data= {
