@@ -20,9 +20,9 @@ Python API and the novel algorithm for motor imagery EEG recognition named MixNe
 
 1. Create `conda`  environment with dependencies
 ```bash
-wget https://raw.githubusercontent.com/IoBT-VISTEC/MIN2Net/main/environment.yml
+wget https://github.com/Max-Phairot-A/MixNet/blob/main/environment.yml
 conda env create -f environment.yml
-conda activate min2net
+conda activate mixnet
 ```
 
 ### Installation:
@@ -30,13 +30,13 @@ conda activate min2net
 1. Using pip
 
   ```bash
-  pip install min2net
+  pip install mixnet-eeg
   ```
-2. Using the released python wheel
+<!-- 2. Using the released python wheel
 
   ```bash
   wget https://github.com/IoBT-VISTEC/MIN2Net/releases/download/v1.0.0/min2net-1.0.0-py3-none-any.whl
-  pip install min2net-1.0.0-py3-none-any.whl
+  pip install min2net-1.0.0-py3-none-any.whl -->
   ```
 
 ### Citation
