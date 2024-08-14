@@ -7,3 +7,4 @@ dist/
 mixnet_eeg.egg-info/
 .DS_Store
 .pypirc
+MANIFEST.in
