@@ -12,11 +12,13 @@ Python API and the novel algorithm for motor imagery EEG recognition named MixNe
 
 ### Dependencies
 
-- Python==3.6.9
-- tensorflow-gpu==2.2.0
-- tensorflow-addons==0.9.1
-- scikit-learn>=0.24.1
+- Python==3.8.10
+- tensorflow-gpu==2.7.0
+- tensorflow-addons==0.16.1
+- scikit-learn>=1.2.2
 - wget>=3.2
+- h5py==3.5.0
+- pandas>=2.0
 
 1. Create `conda`  environment with dependencies
 ```bash
