@@ -5,7 +5,7 @@ from tensorflow.keras.optimizers import Adam
 from os import path
 import glob
 
-def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradient=False, policy=None, loss_weights=None, log_dir='logs', **kwargs):
+def get_params(dataset, train_type, num_class, margin, num_chs=None, adaptive_gradient=False, policy=None, loss_weights=None, log_dir='logs', **kwargs):
     
     model_name  = 'MIN2Net_original'
     n_subjects   = 9  if dataset == 'BCIC2a' else \
@@ -17,14 +17,14 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
                    
     time_points = 400
     # Note that, the last dimension is the number of channels in each dataset
-    if dataset == 'SMR_BCI':
-        input_shape  = (1, time_points, 15)  
-    elif dataset == 'BCIC2b':
+    if dataset == 'BCIC2b':
         input_shape  = (1, time_points, 3) 
     elif dataset == 'BNCI2015_001':
         input_shape  = (1, time_points, 13)
+    elif dataset == 'SMR_BCI':
+        input_shape  = (1, time_points, 15)  
     else:
-        input_shape  = (1, time_points, 20)    
+        input_shape  = (1, time_points, 20) # The input_shape for 'BCIC2a', 'HighGamma', and 'OpenBMI' datasets    
         
     latent_dim   = input_shape[2] if num_class == 2 else 64 # n_channels or 64
     loss_weights = [1., 1., 1.] if loss_weights == None else loss_weights
@@ -37,7 +37,6 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
                                                     dataset, 
                                                     policy if adaptive_gradient==True else str(loss_weights), 
                                                     margin)
-    # log_path = glob.glob('{}/{}/{}_{}*/'.format(log_dir, model_name, train_type, dataset))[0]
     if train_type == 'subject_dependent':
         factor = 0.5
         es_patience = 20
@@ -47,6 +46,7 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
         patience = 5
         epochs = 200
         min_epochs = 0
+        
     elif train_type == 'subject_independent':
         factor = 0.5
         es_patience = 20

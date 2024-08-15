@@ -1,6 +1,6 @@
-from min2net.models import *
-from min2net.loss import *
-from min2net.utils import dotdict
+from mixnet.models import *
+from mixnet.loss import *
+from mixnet.utils import dotdict
 from tensorflow.keras.optimizers import Adam
 from os import path
 
@@ -14,29 +14,24 @@ def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_grad
                    14 if dataset == 'HighGamma' else \
                    54 if dataset == 'OpenBMI' else 0
     
-    if num_chs == 3:
-        input_shape = (11,11,1)
-    else:
-        if dataset == 'SMR_BCI':
-            input_shape  = (23,23,1) 
-        elif dataset == 'BNCI2015_001':
-            input_shape  = (21,21,1) 
-        elif dataset == 'BCIC2b':
-            input_shape  = (11,11,1) 
-        else: 
-            input_shape = (28,28,1)
+    # The first and the second dimensions are the spectral-spatial representation after passing zero padding with 4x4 matrix
+    if dataset == 'BCIC2b':
+        input_shape  = (11,11,1) 
+    elif dataset == 'BNCI2015_001':
+        input_shape  = (21,21,1) 
+    elif dataset == 'SMR_BCI':
+        input_shape  = (23,23,1) 
+    else: 
+        input_shape = (28,28,1) # The input_shape for 'BCIC2a', 'HighGamma', and 'OpenBMI' datasets
+        
     loss_weights = [1.] if loss_weights == None else loss_weights
     
     # The below log_path use 
-    # log_path = '{}/{}/{}_{}_classes_{}'.format(log_dir, 
-    #                                                 model_name, 
-    #                                                 train_type, 
-    #                                                 str(num_class), 
-    #                                                 dataset)
-    log_path = '{}/{}/{}_{}'.format(log_dir, 
-                                                    model_name, 
-                                                    train_type,  
-                                                    dataset)
+    log_path = '{}/{}/{}_{}_classes_{}'.format(log_dir, 
+                                                model_name, 
+                                                train_type, 
+                                                str(num_class), 
+                                                dataset)
     
     if train_type == 'subject_dependent':
         factor = 0.5

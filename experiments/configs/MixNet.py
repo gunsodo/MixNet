@@ -25,7 +25,8 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
     else:
     	raise ValueError('The data type is not correct for MixNet')
     
-    input_shape = (1, time_points, int(n_component*n_freq_bands))
+    input_shape = (1, time_points, int(n_component*n_freq_bands)) # The input_shape for all datasets
+    
     latent_dim   = input_shape[2] if latent_dim == 0 else latent_dim
     log_path = '{}/{}/{}_csp_components/{}_{}_classes_{}_{}_margin_{}_latent_dim_{}_W_{}'.format(log_dir, 
                                             model_name, 

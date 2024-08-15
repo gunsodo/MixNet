@@ -13,15 +13,17 @@ def get_params(dataset, train_type, data_type, num_class, num_chs=None, loss_wei
                    14 if dataset == 'SMR_BCI' else \
                    14 if dataset == 'HighGamma' else \
                    54 if dataset == 'OpenBMI' else 0
-    
+
+    time_points = 400
+    # Note that, the second dimension is the number of channels in each dataset
     if dataset == 'BCIC2b':
-        input_shape  = (1,3,400) 
+        input_shape  = (1,3,time_points) 
     elif dataset == 'BNCI2015_001':
-        input_shape  = (1,13,400) 
+        input_shape  = (1,13,time_points) 
     elif dataset == 'SMR_BCI':
-        input_shape  = (1,15,400) 
+        input_shape  = (1,15,time_points) 
     else: 
-        input_shape = (1,20,400) # The input_shape for 'BCIC2a', 'HighGamma' and 'OpenBMI' datasets
+        input_shape = (1,20,time_points) # The input_shape for 'BCIC2a', 'HighGamma', and 'OpenBMI' datasets
             
     loss_weights = [1.] if loss_weights == None else loss_weights
     
