@@ -19,12 +19,10 @@ class SpectralSpatialSignalGeneration():
                 smp_freq, 
                 num_class=2, 
                 order=5, 
-                n_components=4, 
-                n_features=8):
+                n_components=4):
         self.bands = bands
         self.smp_freq = smp_freq
         self.n_components = n_components
-        self.n_features = n_features
         self.cov_type = 'epoch'
         self.order = order
         self.n_classes = num_class
@@ -35,7 +33,6 @@ class SpectralSpatialSignalGeneration():
             self.component_order = 'mutual_info'
         self.norm_trace = False
         self.spatial_transform = [None for i in range(len(bands))]
-        self.selector = SelectKBest(score_func=mutual_info_classif, k=self.n_features)
         
     def __covariance(self, X):
         # covariance = np.dot(X, X.T)/X.shape[0]

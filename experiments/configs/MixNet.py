@@ -20,7 +20,7 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
             [28, 32], [32, 36], [36, 40]]
     n_freq_bands = len(freq_bands)
     
-    if data_type == 'fbcsp_time_series' :
+    if data_type == 'spectral_spatial_signals' :
     	pass
     else:
     	raise ValueError('The data type is not correct for MixNet')
@@ -40,7 +40,6 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
     
     loss_weights = [1.0, 1.0, 1.0] if loss_weights == None else loss_weights
     loss_weights = [1.0, 1.0, 1.0] if adaptive_gradient == True else loss_weights
-    
     
     if train_type == 'subject_dependent':
         factor = 0.5
@@ -68,7 +67,7 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
                         'input_shape': input_shape,
                         'latent_dim': latent_dim,
                         'class_balancing': True,
-                        'f1_average': 'weighted',
+                        'f1_average': 'macro',
                         'num_class': num_class, 
                         'loss': [MeanSquaredError(), triplet_loss(margin=margin), SparseCategoricalCrossentropy()],
                         'loss_names': ['mse', 'triplet', 'crossentropy'],

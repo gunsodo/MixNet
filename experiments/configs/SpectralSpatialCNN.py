@@ -7,14 +7,13 @@ from os import path
 def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_gradient=False, policy=None, loss_weights=None, log_dir='logs', **kwargs):
     
     model_name  = 'SpectralSpatialCNN'
-    n_subjects   = 54 if dataset == 'OpenBMI' else \
-                   9  if dataset == 'BCIC2a' else \
+    n_subjects   = 9  if dataset == 'BCIC2a' else \
                    9  if dataset == 'BCIC2b' else \
-                   109  if dataset == 'Physionet' else \
                    12 if dataset == 'BNCI2015_001' else \
-                   38  if dataset == 'MI_GigaDB' else \
+                   14 if dataset == 'SMR_BCI' else \
                    14 if dataset == 'HighGamma' else \
-                   14 if dataset == 'SMR_BCI' else 0
+                   54 if dataset == 'OpenBMI' else 0
+    
     if num_chs == 3:
         input_shape = (11,11,1)
     else:
@@ -66,7 +65,7 @@ def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_grad
                         'model_name': model_name, 
                         'input_shape': input_shape,
                         'class_balancing': True,
-                        'f1_average': 'weighted',
+                        'f1_average': 'macro',
                         'num_class': num_class, 
                         'loss': [SparseCategoricalCrossentropy()],
                         'loss_names': ['crossentropy'],

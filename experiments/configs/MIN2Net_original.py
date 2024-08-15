@@ -26,7 +26,7 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
     else:
         input_shape  = (1, time_points, 20)    
         
-    latent_dim   = input_shape[2] if num_class == 2 else 20*num_class # n_channels or 64
+    latent_dim   = input_shape[2] if num_class == 2 else 64 # n_channels or 64
     loss_weights = [1., 1., 1.] if loss_weights == None else loss_weights
 
     
@@ -52,7 +52,7 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
         es_patience = 20
         lr = 0.001
         min_lr = 0.0001
-        batch_size = 100#100
+        batch_size = 100 #100
         patience = 5
         epochs = 200
         min_epochs = 0
@@ -64,7 +64,7 @@ def get_params(dataset, train_type, num_class, margin, num_chs, adaptive_gradien
                         'input_shape': input_shape,
                         'latent_dim': latent_dim,
                         'class_balancing': True,
-                        'f1_average': 'weighted',
+                        'f1_average': 'macro',
                         'num_class': num_class, 
                         'loss': [MeanSquaredError(), triplet_loss(margin=margin), SparseCategoricalCrossentropy()],
                         'loss_names': ['mse', 'triplet', 'crossentropy'],

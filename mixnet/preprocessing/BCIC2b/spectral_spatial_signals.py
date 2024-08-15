@@ -11,12 +11,13 @@ n_chs = CONSTANT['n_chs']
 orig_smp_freq = CONSTANT['orig_smp_freq']
 MI_len = CONSTANT['MI']['len']
 
-def subject_dependent_setting(k_folds, pick_smp_freq, n_components, n_features, bands, order, save_path, num_class=2, sel_chs=None):
+def subject_dependent_setting(k_folds, pick_smp_freq, n_components, bands, order, save_path, num_class=2, sel_chs=None):
     sel_chs = CONSTANT['sel_chs'] if sel_chs == None else sel_chs
     n_folds = k_folds
     save_path = save_path + '/BCIC2b/spectral_spatial_signals/{}_class/{}_csp_components/subject_dependent'.format(num_class,n_components)
     n_chs = len(sel_chs)
-
+    print("The number of CSP components used is: ", n_components, ' with using: ', num_class, ' classes data and preparing on the dataset:', 'BCIC2b')
+    
     X_train_all, y_train_all = [], []
     X_test_all, y_test_all = [], []
 
@@ -43,7 +44,7 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, n_features, 
             y_tr_cv, y_val_cv = y_tr[train_index], y_tr[val_index]
 
             # Peforming generation of spectral-spatial signals 
-            spectral_spatial_scaler = SpectralSpatialSignalGeneration(bands=bands, smp_freq=pick_smp_freq, num_class=num_class, order=order, n_components=n_components, n_features=n_features)
+            spectral_spatial_scaler = SpectralSpatialSignalGeneration(bands=bands, smp_freq=pick_smp_freq, num_class=num_class, order=order, n_components=n_components)
             X_tr_extracted = spectral_spatial_scaler.fit_transform(X_tr_cv, y_tr_cv)
             X_val_extracted = spectral_spatial_scaler.transform(X_val_cv)
             X_te_extracted = spectral_spatial_scaler.transform(X_te)
@@ -54,12 +55,13 @@ def subject_dependent_setting(k_folds, pick_smp_freq, n_components, n_features, 
             print('The preprocessing of subject {} from fold {} is DONE!!!'.format(person+1, fold+1))
 
 
-def subject_independent_setting(k_folds, pick_smp_freq, n_components, n_features, bands, order, save_path, num_class=2, sel_chs=None):
+def subject_independent_setting(k_folds, pick_smp_freq, n_components, bands, order, save_path, num_class=2, sel_chs=None):
     sel_chs = CONSTANT['sel_chs'] if sel_chs == None else sel_chs
     n_folds = k_folds
     save_path = save_path + '/BCIC2b/spectral_spatial_signals/{}_class/{}_csp_components/subject_independent'.format(num_class,n_components)
     n_chs = len(sel_chs)
-
+    print("The number of CSP components used is: ", n_components, ' with using: ', num_class, ' classes data and preparing on the dataset:', 'BCIC2b')
+    
     X_train_all, y_train_all = [], []
     X_test_all, y_test_all = [], []
 
@@ -96,7 +98,7 @@ def subject_independent_setting(k_folds, pick_smp_freq, n_components, n_features
             y_test = y_te
             
             # Peforming generation of spectral-spatial signals
-            spectral_spatial_scaler = SpectralSpatialSignalGeneration(bands=bands, smp_freq=pick_smp_freq, num_class=num_class, order=order, n_components=n_components, n_features=n_features)
+            spectral_spatial_scaler = SpectralSpatialSignalGeneration(bands=bands, smp_freq=pick_smp_freq, num_class=num_class, order=order, n_components=n_components)
             X_train_extracted = spectral_spatial_scaler.fit_transform(X_train, y_train)
             X_val_extracted = spectral_spatial_scaler.transform(X_val)
             X_test_extracted = spectral_spatial_scaler.transform(X_test)

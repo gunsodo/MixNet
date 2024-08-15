@@ -1,35 +1,27 @@
-from min2net.models import *
-from min2net.loss import *
-from min2net.utils import dotdict
+from mixnet.models import *
+from mixnet.loss import *
+from mixnet.utils import dotdict
 from tensorflow.keras.optimizers import Adam
 from os import path
 
-def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_gradient=False, policy=None, loss_weights=None, log_dir='logs', **kwargs):
+def get_params(dataset, train_type, data_type, num_class, num_chs=None, loss_weights=None, log_dir='logs', **kwargs):
     
     model_name  = 'DeepConvNet'
-    n_subjects   = 54 if dataset == 'OpenBMI' else \
-                   9  if dataset == 'BCIC2a' else \
-                   9  if dataset == 'Individual_MI' else \
+    n_subjects   = 9  if dataset == 'BCIC2a' else \
                    9  if dataset == 'BCIC2b' else \
-                   12  if dataset == 'BNCI2015_001' else \
+                   12 if dataset == 'BNCI2015_001' else \
+                   14 if dataset == 'SMR_BCI' else \
                    14 if dataset == 'HighGamma' else \
-                   109 if dataset == 'Physionet' else \
-                   38 if dataset == 'MI_GigaDB' else \
-                   14 if dataset == 'SMR_BCI' else 0
+                   54 if dataset == 'OpenBMI' else 0
     
-    if num_chs == 3:
-        input_shape = (1,3,400)
-    else:
-        if dataset == 'SMR_BCI':
-            input_shape  = (1,15,400) 
-        elif dataset == 'BCIC2b':
-            input_shape  = (1,3,400) 
-        elif dataset == 'BNCI2015_001':
-            input_shape  = (1,13,400) 
-        elif dataset == 'MI_GigaDB':
-            input_shape  = (1,20,300) 
-        else: 
-            input_shape = (1,20,400)
+    if dataset == 'BCIC2b':
+        input_shape  = (1,3,400) 
+    elif dataset == 'BNCI2015_001':
+        input_shape  = (1,13,400) 
+    elif dataset == 'SMR_BCI':
+        input_shape  = (1,15,400) 
+    else: 
+        input_shape = (1,20,400) # The input_shape for 'BCIC2a', 'HighGamma' and 'OpenBMI' datasets
             
     loss_weights = [1.] if loss_weights == None else loss_weights
     
@@ -39,10 +31,6 @@ def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_grad
                                                     train_type, 
                                                     str(num_class), 
                                                     dataset)
-    # log_path = '{}/{}/{}_{}'.format(log_dir, 
-    #                                                 model_name, 
-    #                                                 train_type,  
-    #                                                 dataset)
     
     if train_type == 'subject_dependent':
         factor = 0.5
@@ -71,7 +59,7 @@ def get_params(dataset, train_type, data_type, num_class, num_chs, adaptive_grad
                         'model_name': model_name, 
                         'input_shape': input_shape,
                         'class_balancing': True,
-                        'f1_average': 'weighted',
+                        'f1_average': 'macro',
                         'num_class': num_class, 
                         'loss': [SparseCategoricalCrossentropy()],
                         'loss_names': ['crossentropy'],
