@@ -3,8 +3,10 @@ import mixnet.preprocessing as prep
 from mixnet.preprocessing.config import CONSTANT
 
 '''
+
 1. In case of preparing a particular dataset, please run the script as an example: python prep_FBCSP.py --dataset 'BCIC2a'
 2. In case of preparing multiple datasets, please run the script as an example: python prep_FBCSP.py --dataset 'BCIC2a' && python prep_FBCSP.py --dataset 'BCIC2b' && python prep_FBCSP.py --dataset 'BNCI2015_001' && python prep_FBCSP.py --dataset 'SMR_BCI' && python prep_FBCSP.py --dataset 'HighGamma' && python prep_FBCSP.py --dataset 'OpenBMI'
+
 '''
 
 k_folds = 5 
@@ -19,7 +21,7 @@ save_path = 'datasets'
 num_class = 2 # Only binary classification task is conducted in this manuscript
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, default='All', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
+parser.add_argument('--dataset', type=str, default='BCIC2a', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
 args = parser.parse_args()
 
 if args.dataset == 'BCIC2a':

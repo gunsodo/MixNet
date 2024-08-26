@@ -3,8 +3,10 @@ import mixnet.preprocessing as prep
 from mixnet.preprocessing.config import CONSTANT
 
 '''
+
 1. In case of preparing a particular dataset, please run the script as an example: python prep_spectral_spatial_signals.py --dataset 'BCIC2a'
 2. In case of preparing multiple datasets, please run the script as an example: python prep_spectral_spatial_signals.py --dataset 'BCIC2a' && python prep_spectral_spatial_signals.py --dataset 'BCIC2b' && python prep_spectral_spatial_signals.py --dataset 'BNCI2015_001' && python prep_spectral_spatial_signals.py --dataset 'SMR_BCI' && python prep_spectral_spatial_signals.py --dataset 'HighGamma' && python prep_spectral_spatial_signals.py --dataset 'OpenBMI'
+
 '''
 k_folds = 5
 pick_smp_freq = 100
@@ -16,7 +18,7 @@ save_path = 'datasets'
 num_class = 2
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, default='All', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
+parser.add_argument('--dataset', type=str, default='BCIC2a', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
 args = parser.parse_args()
 
 if args.dataset == 'BCIC2a':
