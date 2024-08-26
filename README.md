@@ -51,12 +51,12 @@ P. Autthasan, R. Chaisaen, H. Phan, M. D. Vos and T. Wilaiprasitporn, "MixNet: J
 @ARTICLE{10533256,
   author={Autthasan, Phairot and Chaisaen, Rattanaphon and Phan, Huy and Vos, Maarten De and Wilaiprasitporn, Theerawit},
   journal={IEEE Internet of Things Journal}, 
-  title={MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification}, 
+  title={MixNet: Joining Force of Classical and Modern Approaches Toward the Comprehensive Pipeline in Motor Imagery EEG Classification}, 
   year={2024},
-  volume={},
-  number={},
-  pages={1-1},
-  keywords={Electroencephalography;Task analysis;Feature extraction;Measurement;Internet of Things;Multitasking;Motors;Deep learning (DL);brain-computer interface (BCI);motor-imagery (MI);adaptive gradient blending;multi-task learning},
+  volume={11},
+  number={17},
+  pages={28539-28554},
+  keywords={Electroencephalography;Task analysis;Feature extraction;Measurement;Internet of Things;Multitasking;Motors;Adaptive gradient blending;brain-computer interface (BCI);deep learning (DL);motor imagery (MI);multitask learning},
   doi={10.1109/JIOT.2024.3402254}}
 ```
 
