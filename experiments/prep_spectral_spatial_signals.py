@@ -31,6 +31,7 @@ if args.dataset == 'BCIC2a':
                                                   save_path=save_path, 
                                                   num_class=num_class, 
                                                   sel_chs=CONSTANT['BCIC2a']['sel_chs'])
+    
     prep.BCIC2a.spectral_spatial_signals.subject_independent_setting(k_folds=k_folds,
                                                 pick_smp_freq=pick_smp_freq, 
                                                 n_components=4, # 4 is the optimal number of CSP components
@@ -50,6 +51,7 @@ elif args.dataset == 'BCIC2b':
                                                   save_path=save_path, 
                                                   num_class=num_class, 
                                                   sel_chs=CONSTANT['BCIC2b']['sel_chs'])
+    
     prep.BCIC2b.spectral_spatial_signals.subject_independent_setting(k_folds=k_folds,
                                                 pick_smp_freq=pick_smp_freq, 
                                                 n_components=2, # 2 is the optimal number of CSP components 
@@ -69,6 +71,7 @@ elif args.dataset == 'BNCI2015_001':
                                                    save_path=save_path, 
                                                    num_class=num_class, 
                                                    sel_chs=CONSTANT['BNCI2015_001']['sel_chs'])
+    
     prep.BNCI2015_001.spectral_spatial_signals.subject_independent_setting(k_folds=k_folds,
                                                  pick_smp_freq=pick_smp_freq, 
                                                  n_components=2, # 2 is the optimal number of CSP components
