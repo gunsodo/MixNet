@@ -5,7 +5,7 @@ __pycache__/
 build/
 dist/
 experiments/datasets/
+experiments/logs/
 mixnet_eeg.egg-info/
 .DS_Store
 .pypirc
-

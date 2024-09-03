@@ -170,6 +170,98 @@ class HistoricalTangentSlope(BaseGradientPolicy):
 
         return w, Gk, Ok
 
+class TangentSlope(BaseGradientPolicy):
+    '''
+    Gradient slope
+    '''
+    def __init__(self, batch_size=100, valid_batch_size=100):
+        super().__init__(batch_size=batch_size, valid_batch_size=valid_batch_size)
+
+    def compute_weight(self):
+        cur_train_loss = self.smoothed_train_loss[-self.hist_size:]
+        cur_valid_loss = self.smoothed_valid_loss[-self.hist_size:]
+        train_slope, valid_slope = self._line_fit(cur_train_loss, cur_valid_loss)
+
+        Ok = valid_slope - train_slope
+        Gk = valid_slope
+
+        w = Gk / (Ok * Ok + 1e-6)
+        if (w < 0.):
+            w = 0.
+
+        return w, Gk, Ok
+
+class SecantSlope(BaseGradientPolicy):
+    '''
+    sec slope
+    '''
+    def __init__(self, batch_size=100, valid_batch_size=100):
+        super().__init__(batch_size=batch_size, valid_batch_size=valid_batch_size)
+        self.train_prev_point = None
+        self.valid_prev_point = None
+        
+    def compute_weight(self):
+        if (self.train_prev_point is None and self.valid_prev_point is None):
+            train_loss = self.smoothed_train_loss[-self.hist_size-1:-1]
+            valid_loss = self.smoothed_valid_loss[-self.hist_size-1:-1]
+            self.train_prev_point, self.valid_prev_point = train_loss.mean(), valid_loss.mean()
+
+        cur_train_loss = self.smoothed_train_loss[-self.hist_size:]
+        cur_valid_loss = self.smoothed_valid_loss[-self.hist_size:]
+        train_cur_point, valid_cur_point = cur_train_loss.mean(), cur_valid_loss.mean()
+
+        Ok = (valid_cur_point - train_cur_point) - (self.valid_prev_point - self.train_prev_point)
+        Gk = valid_cur_point - self.valid_prev_point
+
+        w = Gk / (Ok * Ok + 1e-6)
+        if (w < 0.):
+            w = 0.
+
+        # update references
+        if (self.valid_prev_point > valid_cur_point):
+            self.train_prev_point = train_cur_point
+            self.valid_prev_point = valid_cur_point
+
+        return w, Gk, Ok    
+    
+class Threshold(BaseGradientPolicy):
+    '''
+    loss threshold
+    '''
+    def __init__(self, batch_size=100, valid_batch_size=100):
+        super().__init__(batch_size=batch_size, valid_batch_size=valid_batch_size)
+        
+    def compute_weight(self):
+        train_loss = self.smoothed_train_loss[-self.hist_size:]
+        valid_loss = self.smoothed_valid_loss[-self.hist_size:]
+
+        Ok = valid_loss - train_loss
+        Gk = valid_loss
+
+        w = np.mean(Gk / (Ok * Ok + 1e-6))
+        if (w < 0.):
+            w = 0.
+
+        return w, Gk.mean(), Ok.mean()
+
+class BlendingRatio(BaseGradientPolicy):
+    '''
+    Scale to norm losses
+    '''
+    def __init__(self, batch_size=100, valid_batch_size=100):
+        super().__init__(batch_size=batch_size, valid_batch_size=valid_batch_size)
+
+    def compute_weight(self):
+        # cur_train_loss = self.smoothed_train_loss[-self.hist_size:]
+        cur_valid_loss = self.smoothed_valid_loss[-self.hist_size:]
+
+        w = np.mean(cur_valid_loss)
+
+        Ok = None
+        Gk = None
+
+        return w, Gk, Ok
+
 class GradientBlending(object):
     def __init__(self, n=3, init_weights=None, adaptive_masked=True):
         self.n_gradient    = n if init_weights is None else len(init_weights)
