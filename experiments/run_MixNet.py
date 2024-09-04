@@ -8,7 +8,20 @@ from configs import exp_config
 In case of preparing a particular dataset, please run the script with its optimal setting as examples:
 
 Subject-dependent manner:
-1. python run_MixNet.py --model_name 'MixNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 2 --margin 1.0 --n_component 6 --warmup 5 
+1. python run_MixNet.py --model_name 'MixNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 1.0 --n_component 6 --warmup 5 
+2. python run_MixNet.py --model_name 'MixNet' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 1.0 --n_component 2 --warmup 7
+3. python run_MixNet.py --model_name 'MixNet' --dataset 'BCIC2b' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 0.1 --latent_dim 4 --n_component 2 --warmup 7
+4. python run_MixNet.py --model_name 'MixNet' --dataset 'BNCI2015_001' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 10.0 --n_component 4 --warmup 2
+5. python run_MixNet.py --model_name 'MixNet' --dataset 'SMR_BCI' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 0.5 --n_component 2 --warmup 2
+6. python run_MixNet.py --model_name 'MixNet' --dataset 'OpenBMI' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 5.0 --n_component 4 --warmup 5
+
+Subject-independent manner:
+1. python run_MixNet.py --model_name 'MixNet' --dataset 'HighGamma' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 1.0 --n_component 10 --warmup 5 
+2. python run_MixNet.py --model_name 'MixNet' --dataset 'BCIC2a' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 0.1 --n_component 4 --latent_dim 128 --warmup 5
+3. python run_MixNet.py --model_name 'MixNet' --dataset 'BCIC2b' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 5.0 --latent_dim 18 --n_component 2 --warmup 3
+4. python run_MixNet.py --model_name 'MixNet' --dataset 'BNCI2015_001' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 100.0 --latent_dim 128 --n_component 2 --warmup 5
+5. python run_MixNet.py --model_name 'MixNet' --dataset 'SMR_BCI' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 5.0 --n_component 6 --warmup 5
+6. python run_MixNet.py --model_name 'MixNet' --dataset 'OpenBMI' --train_type 'subject_independent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 100.0 --n_component 2 --warmup 5
 
 '''
                 
