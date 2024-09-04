@@ -10,21 +10,21 @@ from configs import exp_config
 In case of preparing a particular dataset, please run the script with its optimal setting as examples: 
 
 Subject-dependent manner:
-1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 1.0 0.1 0.5 --margin 5.0
-2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 1.0 0.1 1.0 --margin 100.0
-3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_dependent'  --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 2 --loss_weights 0.5 0.1 1.0 --margin 100.0
-4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 1.0 0.5 0.5 --margin 100.0
-5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.1 0.1 1.0 --margin 1.0
-6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.5 0.5 1.0 --margin 1.0
+1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 0.5 --margin 5.0
+2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 100.0
+3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_dependent'  --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 0 --loss_weights 0.5 0.1 1.0 --margin 100.0
+4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.5 0.5 --margin 100.0
+5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.1 0.1 1.0 --margin 1.0
+6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0
 
 
 Subject-independent manner:
-1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 1.0 0.1 1.0 --margin 5.0
-2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.5 0.1 1.0 --margin 1.0
-3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 2 --loss_weights 1.0 0.1 1.0 --margin 0.1
-4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.5 0.5 1.0 --margin 1.0 
-5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.1 1.0 0.1 --margin 1.0
-6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 2 --loss_weights 0.5 0.5 1.0 --margin 1.0
+1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 5.0
+2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.1 1.0 --margin 1.0
+3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 0.1
+4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0 
+5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.1 1.0 0.1 --margin 1.0
+6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0
 
 
 '''

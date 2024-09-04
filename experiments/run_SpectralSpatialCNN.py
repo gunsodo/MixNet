@@ -8,9 +8,9 @@ from configs import exp_config
 
 In case of preparing a particular dataset, please run the script as an example: 
 
-python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 2
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0
 
-python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 2 --subjects 10 11 12 13 
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0 
 
 '''
 def main(subject):
