@@ -26,7 +26,7 @@ def get_params(dataset, train_type, num_class, margin, num_chs=None, adaptive_gr
     else:
         input_shape  = (1, time_points, 20) # The input_shape for 'BCIC2a', 'HighGamma', and 'OpenBMI' datasets    
         
-    latent_dim   = input_shape[2] if num_class == 2 else 64 # n_channels or 64
+    latent_dim   = input_shape[2] if num_class == 2 else 64 # n_channels or 64 (in case of three-class classification task)
     loss_weights = [1., 1., 1.] if loss_weights == None else loss_weights
 
     

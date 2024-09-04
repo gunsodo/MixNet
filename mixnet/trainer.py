@@ -20,7 +20,7 @@ class Trainer(object):
                  metrics='accuracy',
                  adaptive_gradient=False, 
                  policy=None,
-                 warmup_epoch=0,
+                 warmup_epoch=5,
                  epochs=200,
                  min_epochs=0,
                  batch_size=100,

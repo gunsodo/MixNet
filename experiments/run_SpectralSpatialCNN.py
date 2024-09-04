@@ -8,12 +8,13 @@ from configs import exp_config
 
 In case of preparing a particular dataset, please run the script as an example: 
 
-python run_EEGNet.py --model_name 'EEGNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --num_class 2  --num_chs 20 --GPU 2
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 2
 
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 2 --subjects 10 11 12 13 
 
 '''
 def main(subject):
-    # create an object of DataLoader
+    # create object of DataLoader
     loader = DataLoader(subject=subject, **config.data_params)
 
     results = []
@@ -46,7 +47,7 @@ if __name__ == '__main__':
     parser.add_argument('--model_name', type=str, default='EEGNet', help='model name')
     parser.add_argument('--dataset', type=str, default='HighGamma', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
     parser.add_argument('--train_type', type=str, default='subject_dependent', help='Train type: ex. subject_dependent, subject_independent')
-    parser.add_argument('--data_type', type=str, default='time_domain', help='Train type: ex. time_domain')
+    parser.add_argument('--data_type', type=str, default='spectral_spatial', help='Train type: ex. spectral_spatial')
     parser.add_argument('--num_class', type=int, default=2, help='number of classes')
     parser.add_argument('--num_chs', type=int, default=20, help='number of classes')
     parser.add_argument('--loss_weights', nargs='+', default=None, type=float, help='loss_weights (beta): ex. [beta1,beta2,beta3,...]')

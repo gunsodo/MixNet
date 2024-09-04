@@ -4,7 +4,7 @@ from mixnet.utils import dotdict
 from tensorflow.keras.optimizers import Adam
 from os import path
 
-def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, n_component, W, latent_dim=None, adaptive_gradient=True, policy=None, loss_weights=None, log_dir='logs', **kwargs):
+def get_params(dataset, train_type, data_type, num_class, margin, n_component, warmup, latent_dim=None, adaptive_gradient=True, policy=None, loss_weights=None, log_dir='logs', **kwargs):
     
     model_name  = 'MixNet'
     n_subjects   = 9  if dataset == 'BCIC2a' else \
@@ -27,19 +27,18 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
     
     input_shape = (1, time_points, int(n_component*n_freq_bands)) # The input_shape for all datasets
     
-    latent_dim   = input_shape[2] if latent_dim == 0 else latent_dim
-    log_path = '{}/{}/{}_csp_components/{}_{}_classes_{}_{}_margin_{}_latent_dim_{}_W_{}'.format(log_dir, 
-                                            model_name, 
-                                            n_component,           
+    latent_dim   = input_shape[2] if latent_dim == None else latent_dim
+    log_path = '{}/{}/{}_{}_classes_{}_{}_csp_components_{}_margin_{}_latent_dim_{}_warmup_{}'.format(log_dir, 
+                                            model_name,           
                                             train_type, 
                                             num_class, 
                                             dataset, 
                                             policy if adaptive_gradient==True else str(loss_weights), 
+                                            n_component,
                                             margin,
                                             latent_dim,
-                                            W)
+                                            warmup)
     
-    loss_weights = [1.0, 1.0, 1.0] if loss_weights == None else loss_weights
     loss_weights = [1.0, 1.0, 1.0] if adaptive_gradient == True else loss_weights
     
     if train_type == 'subject_dependent':
@@ -60,9 +59,9 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
         patience = 5
         epochs = 200
         min_epochs = 0
-    print("The warm-up period used in Adaptive gradient blending is {}".format(W))    
+        
     params = dotdict({
-                'model': MIN2Net,
+                'model': MixNet,
                 'model_params': dotdict({
                         'model_name': model_name, 
                         'input_shape': input_shape,
@@ -75,7 +74,7 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
                         'loss_weights': loss_weights,
                         'adaptive_gradient': adaptive_gradient,
                         'policy': policy,
-                        'warmup_epoch': W,
+                        'warmup_epoch': warmup,
                         'epochs': epochs,
                         'batch_size': batch_size,
                         'optimizer': Adam(beta_1=0.9, beta_2=0.999, epsilon=1e-08),
@@ -95,7 +94,7 @@ def get_params(dataset, dataset_path, train_type, data_type, num_class, margin, 
                         'train_type': train_type,
                         'data_format': 'NTCD',
                         'data_type': data_type,
-                        'dataset_path': dataset_path,
+                        'dataset_path': 'datasets',
                         'n_subjects': n_subjects,
                         'n_folds': 5,
                         'load_path': 'datasets/{}/{}/{}_class'.format(dataset, data_type, num_class)

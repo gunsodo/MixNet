@@ -10,7 +10,7 @@ class MixNet(models.base.BaseModel):
     def __init__(self, 
                  optimizer,
                  input_shape=(1,400,20),
-                 latent_dim=20,
+                 latent_dim=None,
                  num_class=2, 
                  loss=[MeanSquaredError(), triplet_loss(), SparseCategoricalCrossentropy()],
                  loss_names=['mse', 'triplet', 'crossentropy'],
@@ -30,10 +30,8 @@ class MixNet(models.base.BaseModel):
         self.LATENT_DIM = self.latent_dim if self.latent_dim is not None else self.C if self.num_class==2 else 64
         self.sfreq = 100
         self.P1 = (1,self.T//self.sfreq)
-#         self.P1 = (1,4) # Seizure Task
         self.P2 = (1,4) # MI Task
         self.F1 = self.C
-#         self.F2 = 10
         self.F2 = self.C//2
         self.FLAT = self.T//self.P1[1]//self.P2[1]
         for k in kwargs.keys():

@@ -1,5 +1,5 @@
 config = {
-    'FBCSP-SVM': {
+    'FBCSP_SVM': {
             'BCIC2a': {
                     'n_subjects': 9
             },
@@ -18,6 +18,7 @@ config = {
             'OpenBMI': {
                     'n_subjects': 54
             },
+            'dataset_path': 'datasets',
             'n_folds': 5,
             'tuned_parameters' : [{
                         'kernel': ['rbf'],
