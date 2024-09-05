@@ -6,6 +6,6 @@ build/
 dist/
 experiments/datasets/
 experiments/logs/
-mixnet_eeg.egg-info/
+mixnet_bci.egg-info/
 .DS_Store
 .pypirc
