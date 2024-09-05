@@ -1,11 +1,11 @@
-<img src="https://github.com/Max-Phairot-A/MixNet/tree/main/MixNet_logo_1.png" width="30%" height="30%">
+<img src="imgs/MixNet_logo_1.png" width="30%" height="30%">
 
 ### MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification
 
 [![Pypi Downloads](https://img.shields.io/pypi/v/min2net?color=green&logo=pypi&logoColor=white)](https://pypi.org/project/mixnet-eeg/)
 [![DOI](https://img.shields.io/badge/DOI-10.1109%2FTBME.2021.3137184-blue)](https://ieeexplore.ieee.org/document/10533256)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-![ARCHFIG](https://github.com/Max-Phairot-A/MixNet/tree/main/imgs/MixNet_overview_new.jpg)
+![ARCHFIG](imgs/MixNet_overview_new.jpg)
 
 Python API and the novel algorithm for motor imagery EEG recognition named MixNet. The API benefits BCI researchers ranging from beginners to experts. We demonstrate examples of using the API for loading benchmark datasets, preprocessing, training, and validating SOTA models, including MixNet. In summary, the API allows the researchers to construct the pipeline to benchmark the newly proposed and recently developed SOTA models.
   
