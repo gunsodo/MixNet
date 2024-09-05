@@ -38,13 +38,13 @@ pip install -r requirements.txt
 1. Using pip
 
   ```bash
-  pip install mixnet-eeg
+  pip install mixnet-bci
   ```
 2. Using the released python wheel
 
   ```bash
-  wget https://github.com/Max-Phairot-A/MixNet/releases/tag/v1.0.2/mixnet_eeg-1.0.2-py3-none-any.whl
-  pip install mixnet_eeg-1.0.2-py3-none-any.whl
+  wget https://github.com/Max-Phairot-A/MixNet/releases/tag/v1.0.0/mixnet_bci-1.0.0-py3-none-any.whl
+  pip install mixnet_bci-1.0.0-py3-none-any.whl
   ```
 
 ### Citation

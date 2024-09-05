@@ -12,7 +12,7 @@ with open(path.join(here, 'mixnet/version.py'), encoding='utf-8') as (
     exec(version_file.read(), version)
 
 setuptools.setup(
-    name='mixnet-eeg',
+    name='mixnet-bci',
     version=version['__version__'],
     author='Phairot Autthasan',
     author_email='phairot.a_s17@vistec.ac.th',
@@ -61,9 +61,9 @@ setuptools.setup(
         '': ['**/*.csv']
     },
     packages=setuptools.find_packages(),
-    python_requires='>=3.7, <=3.10.4',
+    python_requires='>=3.8, <=3.10.4',
 
 )
 
-# tensorflow-gpu==2.7.0 # not support tensorflow-gpu via pip
+# tensorflow-gpu==2.7.0 or 'tensorflow-gpu==2.8.2' # not support tensorflow-gpu via pip
 
