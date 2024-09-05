@@ -1,10 +1,13 @@
-<p align="center"> 
-<img src="MixNet_overview_new.jpg" width="100%" height="100%"> 
-</p>
+<img src="https://github.com/Max-Phairot-A/MixNet/tree/main/MixNet_logo_1.png" width="30%" height="30%">
 
 ### MixNet: Joining Force of Classical and Modern Approaches toward The Comprehensive Pipeline in Motor Imagery EEG Classification
 
-Python API and the novel algorithm for motor imagery EEG recognition named MixNet. The API benefits BCI researchers ranging from beginners to experts. We demonstrate examples of using the API for loading benchmark datasets, preprocessing, training, and validating SOTA models, including MixNet. In summary, the API allows the researchers to construct the pipeline to benchmark the newly proposed models and very recently developed SOTA models.
+[![Pypi Downloads](https://img.shields.io/pypi/v/min2net?color=green&logo=pypi&logoColor=white)](https://pypi.org/project/mixnet-eeg/)
+[![DOI](https://img.shields.io/badge/DOI-10.1109%2FTBME.2021.3137184-blue)](https://ieeexplore.ieee.org/document/10533256)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![ARCHFIG](https://github.com/Max-Phairot-A/MixNet/tree/main/imgs/MixNet_overview_new.jpg)
+
+Python API and the novel algorithm for motor imagery EEG recognition named MixNet. The API benefits BCI researchers ranging from beginners to experts. We demonstrate examples of using the API for loading benchmark datasets, preprocessing, training, and validating SOTA models, including MixNet. In summary, the API allows the researchers to construct the pipeline to benchmark the newly proposed and recently developed SOTA models.
   
 ---
 
@@ -20,11 +23,11 @@ Python API and the novel algorithm for motor imagery EEG recognition named MixNe
 - h5py==3.5.0
 - pandas>=2.0
 
-1. Create `conda`  environment with dependencies
+<!-- 1. Create `conda`  environment with dependencies
 ```bash
 wget https://github.com/Max-Phairot-A/MixNet/blob/main/environment.yml
 conda env create -f environment.yml
-conda activate mixnet
+conda activate mixnet -->
 ```
 
 ### Installation:
