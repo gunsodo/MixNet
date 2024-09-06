@@ -6,7 +6,7 @@ from mixnet.utils import write_log, DataLoader, str2bool
 from configs import exp_config
 '''
 
-In case of preparing a particular dataset, please run the script as an example: 
+In case of evaluating classification performance on a particular dataset, please run the script as an example: 
 
 python run_EEGNet.py --model_name 'EEGNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --num_class 2  --num_chs 20 --GPU 0
 

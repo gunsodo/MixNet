@@ -5,7 +5,7 @@ import argparse
 from mixnet.utils import write_log, DataLoader, str2bool
 from configs import exp_config
 '''
-In case of preparing a particular dataset, please run the script with its optimal setting as examples:
+In case of evaluating classification performance on a particular dataset, please run the script with its optimal setting as examples:
 
 Subject-dependent manner:
 1. python run_MixNet.py --model_name 'MixNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial_signals' --adaptive_gradient True --policy 'HistoricalTangentSlope' --log_dir 'logs' --num_class 2 --GPU 0 --margin 1.0 --n_component 6 --warmup 5 

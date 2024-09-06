@@ -7,7 +7,7 @@ from configs import exp_config
 
 '''
 
-In case of preparing a particular dataset, please run the script with its optimal setting as examples: 
+In case of evaluating classification performance on a particular dataset, please run the script with its optimal setting as examples: 
 
 Subject-dependent manner:
 1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 0.5 --margin 5.0
