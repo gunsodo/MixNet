@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ### Citation
 
-To read & cite our paper, please go to [Preprint](https://ieeexplore.ieee.org/document/10533256) and [our paper](https://ieeexplore.ieee.org/document/10533256).
+To read & cite our paper, please go to [our preprint](https://arxiv.org/abs/2409.04104v1) and [our paper](https://ieeexplore.ieee.org/document/10533256).
 
 P. Autthasan, R. Chaisaen, H. Phan, M. D. Vos and T. Wilaiprasitporn, "MixNet: Joining Force of Classical and Modern Approaches Toward the Comprehensive Pipeline in Motor Imagery EEG Classification," in IEEE Internet of Things Journal, vol. 11, no. 17, pp. 28539-28554, 1 Sept.1, 2024, doi: 10.1109/JIOT.2024.3402254. 
 
