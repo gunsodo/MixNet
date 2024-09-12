@@ -9,7 +9,7 @@ from mixnet.utils import write_log, DataLoader, str2bool
 '''
 In case of evaluating classification performance on a particular dataset, please run the script as an example: 
 
-python run_FBCSP_SVM.py --model_name 'FBCSP_SVM' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'fbcsp' --num_class 2  --num_chs 20 
+python run_FBCSP_SVM.py --model_name 'FBCSP_SVM' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'fbcsp' --num_class 2  --num_chs 20 
 
 '''
 

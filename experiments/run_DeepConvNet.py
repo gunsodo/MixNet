@@ -8,7 +8,7 @@ from configs import exp_config
 
 In case of evaluating classification performance on a particular dataset, please run the script as an example: 
 
-python run_DeepConvNet.py --model_name 'DeepConvNet' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --num_class 2  --num_chs 20 --GPU 0
+python run_DeepConvNet.py --model_name 'DeepConvNet' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'time_domain' --num_class 2  --num_chs 20 --GPU 0
 
 
 '''
@@ -44,7 +44,7 @@ def main(subject):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='DeepConvNet', help='model name')
-    parser.add_argument('--dataset', type=str, default='HighGamma', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
+    parser.add_argument('--dataset', type=str, default='BCIC2a', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
     parser.add_argument('--train_type', type=str, default='subject_dependent', help='Train type: ex. subject_dependent, subject_independent')
     parser.add_argument('--data_type', type=str, default='time_domain', help='Train type: ex. time_domain')
     parser.add_argument('--num_class', type=int, default=2, help='number of classes')

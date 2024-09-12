@@ -8,9 +8,9 @@ from configs import exp_config
 
 In case of evaluating classification performance on a particular dataset, please run the script as an example:  
 
-python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0
 
-python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0 
+python run_SpectralSpatialCNN.py --model_name 'SpectralSpatialCNN' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'spectral_spatial' --num_class 2  --num_chs 20 --GPU 0 
 
 '''
 def main(subject):
@@ -45,7 +45,7 @@ def main(subject):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='EEGNet', help='model name')
-    parser.add_argument('--dataset', type=str, default='HighGamma', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
+    parser.add_argument('--dataset', type=str, default='BCIC2a', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
     parser.add_argument('--train_type', type=str, default='subject_dependent', help='Train type: ex. subject_dependent, subject_independent')
     parser.add_argument('--data_type', type=str, default='spectral_spatial', help='Train type: ex. spectral_spatial')
     parser.add_argument('--num_class', type=int, default=2, help='number of classes')

@@ -13,8 +13,8 @@ Subject-dependent manner:
 1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 0.5 --margin 5.0
 2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 100.0
 3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_dependent'  --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 0 --loss_weights 0.5 0.1 1.0 --margin 100.0
-4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.5 0.5 --margin 100.0
-5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.1 0.1 1.0 --margin 1.0
+4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 13 --GPU 0 --loss_weights 1.0 0.5 0.5 --margin 100.0
+5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 15 --GPU 0 --loss_weights 0.1 0.1 1.0 --margin 1.0
 6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_dependent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0
 
 
@@ -22,8 +22,8 @@ Subject-independent manner:
 1. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'HighGamma' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 5.0
 2. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2a' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.1 1.0 --margin 1.0
 3. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BCIC2b' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_chs 3 --GPU 0 --loss_weights 1.0 0.1 1.0 --margin 0.1
-4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0 
-5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.1 1.0 0.1 --margin 1.0
+4. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'BNCI2015_001' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 13 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0 
+5. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'SMR_BCI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 15 --GPU 0 --loss_weights 0.1 1.0 0.1 --margin 1.0
 6. python run_MIN2Net.py --model_name 'MIN2Net_original' --dataset 'OpenBMI' --train_type 'subject_independent' --data_type 'time_domain' --log_dir 'logs' --num_class 2  --num_chs 20 --GPU 0 --loss_weights 0.5 0.5 1.0 --margin 1.0
 
 
@@ -62,7 +62,7 @@ def main(subject):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, default='MIN2Net_original', help='model name')
-    parser.add_argument('--dataset', type=str, default='HighGamma', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
+    parser.add_argument('--dataset', type=str, default='BCIC2a', help='dataset name: ex. [BCIC2a/BCIC2b/BNCI2015_001/SMR_BCI/HighGamma/OpenBMI]')
     parser.add_argument('--train_type', type=str, default='subject_independent', help='Train type: ex. subject_dependent, subject_independent')
     parser.add_argument('--data_type', type=str, default='time_domain', help='Train type: ex. time_domain')
     parser.add_argument('--num_class', type=int, default=2, help='number of classes')
