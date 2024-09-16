@@ -8,8 +8,8 @@
 
 Python API and the novel algorithm for motor imagery EEG classification named MixNet. The API benefits BCI researchers ranging from beginners to experts. We demonstrate examples of using the API for loading six benchmark datasets, preprocessing, training, and validating SOTA models, including MixNet. In summary, the API allows the researchers to construct the pipeline to benchmark the newly proposed and recently developed SOTA models.
 
-- **Website:** [https://mixnetbci.github.io/](https://mixnetbci.github.io/)
-- **Documentation:** [https://https://mixnetbci.github.io/](https://mixnetbci.github.io/)
+- **Website:** [https://mixnetbci.github.io/](https://mixnetbci.github.io)
+- **Documentation:** [https://mixnetbci.github.io](https://mixnetbci.github.io)
 - **Source code:** [https://github.com/Max-Phairot-A/MixNet](https://github.com/Max-Phairot-A/MixNet)
 - **Bug reports:** [https://github.com/Max-Phairot-A/MixNet/issues](https://github.com/Max-Phairot-A/MixNet/issues)
 ---
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 ### Usage 
 
 - **Tutorial:** [https://mixnetbci.github.io](https://mixnetbci.github.io)
-- **EEG preprocessing:** [https://mixnetbci.github.io//docs/preprocessing](https://mixnetbci.github.io/docs/preprocessing)
+- **EEG preprocessing:** [https://mixnetbci.github.io/docs/preprocessing](https://mixnetbci.github.io/docs/preprocessing)
 - **MixNet and all baseline methods' training:** [https://mixnetbci.github.io/docs/models](https://mixnetbci.github.io/docs/models)
 
 ### Citation
