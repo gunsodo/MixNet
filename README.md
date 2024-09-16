@@ -51,9 +51,9 @@ pip install -r requirements.txt
 
 ### Usage 
 
-- **Tutorial:** [https://mixnetbci.github.io/](https://mixnetbci.github.io/)
-- **EEG preprocessing:** [https://mixnetbci.github.io//docs/preprocessing](https://mixnetbci.github.io//docs/preprocessing)
-- **MixNet and all baseline methods' training:** [https://mixnetbci.github.io//docs/models](https://mixnetbci.github.io//docs/models)
+- **Tutorial:** [https://mixnetbci.github.io](https://mixnetbci.github.io)
+- **EEG preprocessing:** [https://mixnetbci.github.io//docs/preprocessing](https://mixnetbci.github.io/docs/preprocessing)
+- **MixNet and all baseline methods' training:** [https://mixnetbci.github.io/docs/models](https://mixnetbci.github.io/docs/models)
 
 ### Citation
 
