@@ -2,7 +2,8 @@ import tensorflow as tf
 import numpy as np
 import os
 import argparse
-from mixnet.utils import write_log, DataLoader, str2bool
+from mixnet.data_loader import DataLoader
+from mixnet.utils import write_log
 from configs import exp_config
 '''
 

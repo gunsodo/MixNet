@@ -1,10 +1,10 @@
 import numpy as np
 import os
-from mixnet.utils import write_log, DataLoader
 import argparse
 from configs.FBCSP_SVM_config import config
+from mixnet.data_loader import DataLoader
 from mixnet.models import SVM
-from mixnet.utils import write_log, DataLoader, str2bool
+from mixnet.utils import write_log
 
 '''
 In case of evaluating classification performance on a particular dataset, please run the script as an example: 
