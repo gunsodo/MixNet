@@ -1,8 +1,25 @@
 """Utility functions"""
 
-from typing import Literal
+import logging
+import sys
+from typing import Any, Dict, List, Literal
+
+import scipy
+import sklearn
+import numpy as np
+import tensorflow as tf
+import yaml
+from sklearn.metrics import (
+    f1_score,
+    confusion_matrix,
+    f1_score,
+    recall_score,
+)
 
 from ._dataset_metadata import DATASETS, DatasetMetadata
+
+
+logger = logging.getLogger(__name__)
 
 
 def load_raw(dataset: Literal[
@@ -94,7 +111,8 @@ def butter_bandpass_filter(data, lowcut, highcut, sfreq, order):
 
 def resampling(data, sfreq, data_len):
     if len(data.shape) != 3:
-        raise Exception("Dimesion error", "--> please use three-dimensional input")
+        raise Exception("Dimesion error",
+                        "--> please use three-dimensional input")
     new_smp_point = int(data_len * sfreq)
     data_resampled = np.zeros((data.shape[0], data.shape[1], new_smp_point))
     for i in range(data.shape[0]):
@@ -112,8 +130,41 @@ def psd_welch(data, smp_freq):
     data_psd = np.zeros((n_samples, n_chs, 89))
     for i in range(n_samples):
         for j in range(n_chs):
-            freq, power_den = scipy.signal.welch(data[i, j], smp_freq, nperseg=n_points)
+            freq, power_den = scipy.signal.welch(
+                data[i, j], smp_freq, nperseg=n_points)
             index = np.where((freq >= 8) & (freq <= 30))[0].tolist()
             # print("the length of---", len(index))
             data_psd[i, j] = power_den[index]
     return data_psd
+
+
+def mean_dict(data: List[Dict[str, Any]]) -> dict[str, Any]:
+    return {k: tf.reduce_mean(d[k]) for k in data[0] for d in data}
+
+
+def log_dict(data: Dict[str, float]) -> None:
+    for k, v in data.items():
+        logger.info(" - %s: %.4f", k, v)
+
+
+def sen_spec(y_true, y_pred):
+    tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
+    recall = recall_score(y_true, y_pred, pos_label=1, average="binary")
+    sensitivity = tp / (tp + fn)
+    specificity = tn / (tn + fp)
+    f1_score_binary = 2 * tp / (2 * tp + fp + fn)
+    f1_score_macro = f1_score(y_true, y_pred, average="macro")
+    f1_score_weighted = f1_score(y_true, y_pred, average="weighted")
+    logger.info("Verifying sensitivity {} and recall {}".format(
+        sensitivity, recall))
+    return sensitivity, specificity, f1_score_binary, f1_score_macro, f1_score_weighted
+
+
+def load_yaml(path: str) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
+        return yaml.load(f, Loader=yaml.SafeLoader)
+
+
+def get_yaml_path() -> str:
+    assert len(sys.argv) == 2, "Number of arguments must be 2, python run.py yaml_file_path"
+    return sys.argv[-1]
